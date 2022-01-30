@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  padding: 20px calc(50% - 40%);
+  background-color: #F6F7FF;
+
+  // @media (max-width: 1023px) {
+  //   min-height: 230px;
+  //   padding: 0 calc(50% - 384px);
+  // }
+
+  // @media (max-width: 767px) {
+  //   padding: 0 calc(50% - 160px);
+  // }
+}
