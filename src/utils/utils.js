@@ -76,7 +76,7 @@ export const newCard = (num = 0) => {
         title: "Заголовок",
         id: nanoid(),
         text: "text",
-        width: 2,
+        width: 12,
         parentCard: num,
     };
   }
