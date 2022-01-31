@@ -1,8 +1,12 @@
-.main {
+.section {
   display: flex;
-  flex-grow: 2;
   flex-direction: column;
-  padding: 0 calc(50% - 45%) 20px;
+  flex-grow: 2;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #ffffff;
 
   // @media (max-width: 1023px) {
   //   min-height: 230px;
@@ -12,8 +16,4 @@
   // @media (max-width: 767px) {
   //   padding: 0 calc(50% - 160px);
   // }
-}
-
-.title {
-  text-align: center;
 }

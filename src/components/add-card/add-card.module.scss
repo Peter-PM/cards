@@ -1,0 +1,27 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100%/12*2);
+  min-width: 170px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #008000;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 14px;
+  background-color: inherit;
+  color: #005f00;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #005f00;
+    outline-color: #008000;
+  }
+}
+
+.svg {
+  width: 30px;
+}
