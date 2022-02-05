@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ActionCreator } from "../../store/action";
+import { movingCardUp, movingCardDown, viewPopup, popupCard } from "../../store/action";
 import styles from "./card.module.scss";
 import {Cards} from "../cards/cards";
 
@@ -14,7 +14,7 @@ function Card({
   first,
   last
 }) {
-  console.log(`first=${first}, last=${last}`);
+
   const TaskWidth = {
     width: `${(100 / 12) * card.width}%`,
   };
@@ -139,22 +139,22 @@ function Card({
   );
 }
 
-const mapStateToProps = (state) => ({
-  cards: state.cards,
+const mapStateToProps = ({CARDS}) => ({
+  cards: CARDS.cards,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   openPopup() {
-    dispatch(ActionCreator.viewPopup(true));
+    dispatch(viewPopup(true));
   },
   addCardInPopup(card) {
-    dispatch(ActionCreator.popupCard(card));
+    dispatch(popupCard(card));
   },
   movingCardUp(card) {
-    dispatch(ActionCreator.movingCardUp(card));
+    dispatch(movingCardUp(card));
   },
   movingCardDown(card) {
-    dispatch(ActionCreator.movingCardDown(card));
+    dispatch(movingCardDown(card));
   },
 });
 

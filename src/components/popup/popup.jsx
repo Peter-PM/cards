@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { ActionCreator } from "../../store/action";
+import { viewPopup, delCard, addCardInCard, changeCard } from "../../store/action";
 import styles from "./popup.module.scss";
 import { clickEsc, clickEnter } from "../../utils/utils";
 const FocusTrap = require("focus-trap-react");
@@ -165,23 +165,23 @@ Popup.propTypes = {
   popupCard: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  viewPopup: state.popupView,
-  popupCard: state.popupCard,
+const mapStateToProps = ({POPUP}) => ({
+  viewPopup: POPUP.popupView,
+  popupCard: POPUP.popupCard,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   closePopup() {
-    dispatch(ActionCreator.viewPopup(false));
+    dispatch(viewPopup(false));
   },
   changeCard(card) {
-    dispatch(ActionCreator.changeCard(card));
+    dispatch(changeCard(card));
   },
   deleteCard(id) {
-    dispatch(ActionCreator.deleteCard(id));
+    dispatch(delCard(id));
   },
   addCardInCard(id) {
-    dispatch(ActionCreator.addCardInCard(id));
+    dispatch(addCardInCard(id));
   },
 });
 

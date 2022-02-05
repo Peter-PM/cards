@@ -4,7 +4,7 @@ import Card from '../card/card';
 
 function Cards(props) {
  const {arr, cards} = props;
-
+ 
   return (
     <>
       {arr && arr.map((card, index) => {
@@ -17,7 +17,7 @@ function Cards(props) {
       })}
       {cards && cards.map((card, index) => {
         if (card.parentCard) {
-          return;
+          return false;
         }
       return <Card 
         key={card.id} 
@@ -30,8 +30,8 @@ function Cards(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cards: state.cards,
+const mapStateToProps = ({CARDS}) => ({
+  cards: CARDS.cards,
 });
 
 export {Cards};

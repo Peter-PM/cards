@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { ActionCreator } from '../../store/action';
+import { addCard } from '../../store/action';
 import styles from './add-card.module.scss';
 
 function AddCard({ addCard }) {
@@ -20,7 +20,7 @@ function AddCard({ addCard }) {
 
 const mapDispatchToProps = (dispatch) => ({
   addCard() {
-    dispatch(ActionCreator.addCard());
+    dispatch(addCard());
   }
 });
 
