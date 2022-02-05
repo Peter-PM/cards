@@ -31,11 +31,19 @@
   border: none;
   background-color: inherit;
   color: #000000;
+  cursor: pointer;
   
   &:hover,
   &:focus {
     color: #008000;
     outline-color: #008000;
+  }
+}
+.button_disabled {
+  cursor: default;
+  color: #808080;
+  &:hover {
+    color: #808080;
   }
 }
 

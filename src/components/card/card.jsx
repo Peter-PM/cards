@@ -2,17 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 import { ActionCreator } from "../../store/action";
 import styles from "./card.module.scss";
-import CardsInCard from "../cards-in-card/cards-in-card";
+import {Cards} from "../cards/cards";
 
-function Card({ cards, card, openPopup, addCardInPopup, movingCardUp, movingCardDown }) {
+function Card({
+  cards,
+  card,
+  openPopup,
+  addCardInPopup,
+  movingCardUp,
+  movingCardDown,
+  first,
+  last
+}) {
+  console.log(`first=${first}, last=${last}`);
   const TaskWidth = {
     width: `${(100 / 12) * card.width}%`,
   };
-  
+
   const renderInteralCards = () => {
-    
     if (cards.length === 0) {
-      return
+      return;
     }
     return cards.filter((item) => item.parentCard === card.id);
   };
@@ -25,12 +34,11 @@ function Card({ cards, card, openPopup, addCardInPopup, movingCardUp, movingCard
         {arr.length ? (
           <>
             <p className={styles.note}>{card.text}</p>
-            <CardsInCard cards={arr}/>
+            <Cards arr={arr} />
           </>
-          ) : (
-            <p className={styles.note}>{card.text}</p>
-          )
-        }
+        ) : (
+          <p className={styles.note}>{card.text}</p>
+        )}
       </div>
       <div className={styles.buttons}>
         <button
@@ -85,26 +93,47 @@ function Card({ cards, card, openPopup, addCardInPopup, movingCardUp, movingCard
           </svg>
         </button>
         <button
-          className={styles.button}
+          disabled={first}
+          className={`${styles.button} ${first ? styles.button_disabled : ''}`}
           type="button"
           aria-label="Поднять карточку"
           onClick={() => {
             movingCardUp(card);
           }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Up</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M112 328l144-144 144 144"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <title>Up</title>
+            <path
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="48"
+              d="M112 328l144-144 144 144"
+            />
+          </svg>
         </button>
         <button
-          className={styles.button}
+          disabled={last}
+          className={`${styles.button} ${last ? styles.button_disabled : ''}`}
           type="button"
           aria-label="Опустить карточку"
           onClick={() => {
             movingCardDown(card);
           }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Down</title><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48" d="M112 184l144 144 144-144"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <title>Down</title>
+            <path
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="48"
+              d="M112 184l144 144 144-144"
+            />
+          </svg>
         </button>
-
       </div>
     </div>
   );
