@@ -1,20 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { movingCardUp, movingCardDown, viewPopup, popupCard } from "../../store/action";
 import styles from "./card.module.scss";
-import {Cards} from "../cards/cards";
+import Cards from "../cards/cards";
 import { getCard } from "../../store/selectors";
 
 function Card({
-  cards,
   card,
-  openPopup,
-  addCardInPopup,
-  movingCardUp,
-  movingCardDown,
   first,
   last
 }) {
+
+  const cards = useSelector(getCard);
+  const dispatch = useDispatch();
 
   const TaskWidth = {
     width: `${(100 / 12) * card.width}%`,
@@ -47,8 +45,8 @@ function Card({
           type="button"
           aria-label="Изменить карточку"
           onClick={() => {
-            addCardInPopup(card);
-            openPopup();
+            dispatch(popupCard(card));
+            dispatch(viewPopup(true));
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -99,7 +97,7 @@ function Card({
           type="button"
           aria-label="Поднять карточку"
           onClick={() => {
-            movingCardUp(card);
+            dispatch(movingCardUp(card));
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -120,7 +118,7 @@ function Card({
           type="button"
           aria-label="Опустить карточку"
           onClick={() => {
-            movingCardDown(card);
+            dispatch(movingCardDown(card));
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -140,23 +138,4 @@ function Card({
   );
 }
 
-const mapStateToProps = (state) => ({
-  cards: getCard(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  openPopup() {
-    dispatch(viewPopup(true));
-  },
-  addCardInPopup(card) {
-    dispatch(popupCard(card));
-  },
-  movingCardUp(card) {
-    dispatch(movingCardUp(card));
-  },
-  movingCardDown(card) {
-    dispatch(movingCardDown(card));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default Card;

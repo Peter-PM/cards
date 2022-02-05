@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { viewPopup, delCard, addCardInCard, changeCard } from "../../store/action";
 import styles from "./popup.module.scss";
 import { clickEsc, clickEnter } from "../../utils/utils";
 import { getPopupCard, getPopupView } from "../../store/selectors";
 const FocusTrap = require("focus-trap-react");
 
-function Popup({ viewPopup, closePopup, popupCard, changeCard, deleteCard, addCardInCard }) {
-  const [activeCard, setCard] = useState(popupCard);
+function Popup() {
+
+  const [activeCard, setCard] = useState(useSelector(getPopupCard));
+
+  const popupView = useSelector(getPopupView);
+  const popupCard = useSelector(getPopupCard);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCard(popupCard);
   }, [popupCard]);
 
+  useEffect(() => {
+    popupView ? document.addEventListener("keydown", handleEscKeyDown) : document.removeEventListener("keydown", handleEscKeyDown);
+  }, [popupView]);
+
   const handleClosePopup = () => {
-    closePopup(false);
     document.removeEventListener("keydown", handleEscKeyDown);
+    dispatch(viewPopup(false));
   };
 
   const handleEscKeyDown = (evt) => {
+    document.removeEventListener("keydown", handleEscKeyDown);
     if (clickEsc(evt)) {
       evt.preventDefault();
       handleClosePopup();
@@ -29,31 +38,30 @@ function Popup({ viewPopup, closePopup, popupCard, changeCard, deleteCard, addCa
     if (clickEnter(evt)) {
       evt.preventDefault();
       handleSaveCanges();
-      document.removeEventListener("keydown", handleEscKeyDown);
     }
   };
 
   const handleSaveCanges = () => {
-    changeCard(activeCard);
+    dispatch(changeCard(activeCard));
     handleClosePopup();
   };
 
   const handleAddCanges = () => {
-    addCardInCard(activeCard.id);
+    dispatch(addCardInCard(activeCard.id));
     handleClosePopup();
   };
 
   const handleDelButton = () => {
-    deleteCard(activeCard.id);
+    dispatch(delCard(activeCard.id));
     handleClosePopup();
   };
 
   return (
     <>
-      {viewPopup ? (
+      {popupView ? (
         <FocusTrap>
           <section
-            className={`${viewPopup ? styles.container : styles.popupOff}`}
+            className={styles.container}
             onClick={handleClosePopup}
           >
             <section
@@ -160,30 +168,4 @@ function Popup({ viewPopup, closePopup, popupCard, changeCard, deleteCard, addCa
   );
 }
 
-Popup.propTypes = {
-  viewPopup: PropTypes.bool.isRequired,
-  closePopup: PropTypes.func.isRequired,
-  popupCard: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  viewPopup: getPopupView(state),
-  popupCard: getPopupCard(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  closePopup() {
-    dispatch(viewPopup(false));
-  },
-  changeCard(card) {
-    dispatch(changeCard(card));
-  },
-  deleteCard(id) {
-    dispatch(delCard(id));
-  },
-  addCardInCard(id) {
-    dispatch(addCardInCard(id));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Popup);
+export default Popup;
