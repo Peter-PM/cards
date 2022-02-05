@@ -1,10 +1,15 @@
-import { createStore } from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './root-reducer';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(),
-);
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+      thunk: true,
+    })
+});
 
 export default store;

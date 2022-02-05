@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "focus-trap-react": "^8.7.1",
+    "@reduxjs/toolkit": "^1.5.0",
+    "axios": "^0.21.1",
     "nanoid": "^3.2.0",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
@@ -39,6 +41,13 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.9"
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^11.2.0",
+    "@testing-library/react-hooks": "^5.1.0",
+    "@testing-library/user-event": "^12.8.0",
+    "axios-mock-adapter": "^1.19.0",
+    "eslint-config-htmlacademy": "^4.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-mock-store": "^1.5.4"
   }
 }

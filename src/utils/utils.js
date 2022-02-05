@@ -15,7 +15,7 @@ export const deleteCard = (array, id) => {
 return array
 }
 
-export const changeCard = (array, card) => {
+export const changeCards = (array, card) => {
   const index = array.findIndex((item) => item.id === card.id);
   array = [
     ...array.slice(0, index),
@@ -35,7 +35,7 @@ export const loadFromLocalStorage = () => {
   }
 };
 
-export const movingCardUp = (array, card) => {
+export const movCardUp = (array, card) => {
 
   const index = array.findIndex((item) => item.id === card.id);
   if (index === 0) {
@@ -52,7 +52,7 @@ export const movingCardUp = (array, card) => {
 
   return array;
 }
-export const movingCardDown = (array, card) => {
+export const movCardDown = (array, card) => {
 
   const index = array.findIndex((item) => item.id === card.id);
   if (index === array.length - 1) {

@@ -1,46 +1,32 @@
-import { ActionType } from './action';
-import { changeCard, movingCardUp, movingCardDown, newCard, deleteCard } from '../utils/utils';
+import { createReducer } from "@reduxjs/toolkit";
+import { addCard, delCard, addCardInCard, changeCard, movingCardUp, movingCardDown } from './action';
+import { changeCards, movCardUp, movCardDown, newCard, deleteCard } from '../utils/utils';
 import { CARDS } from '../mock';
 
 const initialState = {
   cards: CARDS,
 };
 
-const chengeCards = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.ADD_CARD:
-      return {
-        ...state,
-        cards: [...state.cards, newCard()],
-      };
-    case ActionType.DELETE_CARD:
-      return {
-        ...state,
-        cards: deleteCard(state.cards, action.payload),
-      };
-    case ActionType.ADD_CARD_IN_CARD:
-      return {
-        ...state,
-        cards: [...state.cards, newCard(action.payload)],
-      };
-    case ActionType.CHANGE_CARD:
-      return {
-        ...state,
-        cards: changeCard(state.cards, action.payload),
-      };
-    case ActionType.MOVING_CARD_UP:
-      return {
-        ...state,
-        cards: movingCardUp(state.cards, action.payload),
-      };
-    case ActionType.MOVING_CARD_DOWN:
-      return {
-        ...state,
-        cards: movingCardDown(state.cards, action.payload),
-      };
-    default:
-      return state;
-  }
-};
+const chengeCards = createReducer(initialState, (builder) => {
+  builder
+    .addCase(addCard, (state) => {
+      state.cards = [...state.cards, newCard()];
+    })
+    .addCase(delCard, (state, action) => {
+      state.cards = deleteCard(state.cards, action.payload);
+    })
+    .addCase(addCardInCard, (state, action) => {
+      state.cards = [...state.cards, newCard(action.payload)];
+    })
+    .addCase(changeCard, (state, action) => {
+      state.cards = changeCards(state.cards, action.payload);
+    })
+    .addCase(movingCardUp, (state, action) => {
+      state.cards = movCardUp(state.cards, action.payload);
+    })
+    .addCase(movingCardDown, (state, action) => {
+      state.cards = movCardDown(state.cards, action.payload);
+    });
+});
 
 export { chengeCards };

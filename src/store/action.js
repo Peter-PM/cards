@@ -1,3 +1,5 @@
+import { createAction } from "@reduxjs/toolkit";
+
 export const ActionType = {
   ADD_CARD: 'add-task',
   DELETE_CARD: 'delete-card',
@@ -9,42 +11,32 @@ export const ActionType = {
   MOVING_CARD_DOWN: 'moving-card-down',
 };
 
-export const addCard = (card) => ({
-  type: ActionType.ADD_CARD,
-  payload: card,
-});
+export const addCard = createAction(ActionType.ADD_CARD);
 
-export const delCard = (card) => ({
-  type: ActionType.DELETE_CARD,
+export const delCard = createAction(ActionType.DELETE_CARD, (card)=> ({
   payload: card,
-});
+}));
 
-export const addCardInCard = (num) => ({
-  type: ActionType.ADD_CARD_IN_CARD,
+export const addCardInCard = createAction(ActionType.ADD_CARD_IN_CARD, (num)=> ({
   payload: num,
-});
+}));
 
-export const changeCard = (card) => ({
-  type: ActionType.CHANGE_CARD,
+export const changeCard = createAction(ActionType.CHANGE_CARD, (card)=> ({
   payload: card,
-});
+}));
 
-export const viewPopup = (bool) => ({
-  type: ActionType.VIEW_POPUP,
+export const viewPopup = createAction(ActionType.VIEW_POPUP, (bool)=> ({
   payload: bool,
-});
+}));
 
-export const movingCardUp = (card) => ({
-  type: ActionType.MOVING_CARD_UP,
+export const movingCardUp = createAction(ActionType.MOVING_CARD_UP, (card)=> ({
   payload: card,
-});
+}));
 
-export const movingCardDown = (card) => ({
-  type: ActionType.MOVING_CARD_DOWN,
+export const movingCardDown = createAction(ActionType.MOVING_CARD_DOWN, (card)=> ({
   payload: card,
-});
+}));
 
-export const popupCard = (num) => ({
-  type: ActionType.POPUP_CARD,
+export const popupCard = createAction(ActionType.POPUP_CARD, (num)=> ({
   payload: num,
-});
+}));
