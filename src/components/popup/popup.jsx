@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { viewPopup, delCard, addCardInCard, changeCard } from "../../store/action";
 import styles from "./popup.module.scss";
 import { clickEsc, clickEnter } from "../../utils/utils";
+import { getPopupCard, getPopupView } from "../../store/selectors";
 const FocusTrap = require("focus-trap-react");
 
 function Popup({ viewPopup, closePopup, popupCard, changeCard, deleteCard, addCardInCard }) {
@@ -165,9 +166,9 @@ Popup.propTypes = {
   popupCard: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({POPUP}) => ({
-  viewPopup: POPUP.popupView,
-  popupCard: POPUP.popupCard,
+const mapStateToProps = (state) => ({
+  viewPopup: getPopupView(state),
+  popupCard: getPopupCard(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

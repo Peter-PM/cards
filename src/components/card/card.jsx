@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { movingCardUp, movingCardDown, viewPopup, popupCard } from "../../store/action";
 import styles from "./card.module.scss";
 import {Cards} from "../cards/cards";
+import { getCard } from "../../store/selectors";
 
 function Card({
   cards,
@@ -139,8 +140,8 @@ function Card({
   );
 }
 
-const mapStateToProps = ({CARDS}) => ({
-  cards: CARDS.cards,
+const mapStateToProps = (state) => ({
+  cards: getCard(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

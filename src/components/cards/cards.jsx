@@ -1,9 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Card from '../card/card';
+import { getCard } from '../../store/selectors';
 
 function Cards(props) {
  const {arr, cards} = props;
+
+ const parrentCards = cards ? cards.filter((item)=> item.parentCard === 0) : [];
+
  
   return (
     <>
@@ -15,23 +19,20 @@ function Cards(props) {
           last={index === arr.length-1 ? true:false}
         />
       })}
-      {cards && cards.map((card, index) => {
-        if (card.parentCard) {
-          return false;
-        }
+      {parrentCards.map((card, index) => {
       return <Card 
         key={card.id} 
         card={card} 
         first={index === 0 ? true:false} 
-        last={index === cards.length-1 ? true:false}
+        last={index === parrentCards.length-1 ? true:false}
       />
       })}
     </>
   );
 }
 
-const mapStateToProps = ({CARDS}) => ({
-  cards: CARDS.cards,
+const mapStateToProps = (state) => ({
+  cards: getCard(state),
 });
 
 export {Cards};
