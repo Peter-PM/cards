@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { movingCardUp, movingCardDown, viewPopup, popupCard } from "../../store/action";
+import { movingCardUp, movingCardDown, viewPopup, addPopupCard } from "../../store/action";
 import styles from "./card.module.scss";
 import Cards from "../cards/cards";
 import { getCard } from "../../store/selectors";
@@ -45,7 +45,7 @@ function Card({
           type="button"
           aria-label="Изменить карточку"
           onClick={() => {
-            dispatch(popupCard(card));
+            dispatch(addPopupCard(card));
             dispatch(viewPopup(true));
           }}
         >

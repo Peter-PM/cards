@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
 export const ActionType = {
-  ADD_CARD: 'add-task',
+  ADD_CARD: 'add-card_',
   DELETE_CARD: 'delete-card',
   ADD_CARD_IN_CARD: 'add-card-in-card',
   VIEW_POPUP: 'popup-view',
@@ -17,8 +17,8 @@ export const delCard = createAction(ActionType.DELETE_CARD, (card)=> ({
   payload: card,
 }));
 
-export const addCardInCard = createAction(ActionType.ADD_CARD_IN_CARD, (num)=> ({
-  payload: num,
+export const addCardInCard = createAction(ActionType.ADD_CARD_IN_CARD, (id)=> ({
+  payload: id,
 }));
 
 export const changeCard = createAction(ActionType.CHANGE_CARD, (card)=> ({
@@ -37,6 +37,6 @@ export const movingCardDown = createAction(ActionType.MOVING_CARD_DOWN, (card)=>
   payload: card,
 }));
 
-export const popupCard = createAction(ActionType.POPUP_CARD, (num)=> ({
-  payload: num,
+export const addPopupCard = createAction(ActionType.POPUP_CARD, (card)=> ({
+  payload: card,
 }));
