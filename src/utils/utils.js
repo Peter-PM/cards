@@ -4,7 +4,7 @@ export const deleteCard = (array, id) => {
   const index = array.findIndex((task) => task.id === id);
   
   if (index === -1) {
-    throw new Error('Can\'t delete unexisting comment');
+    throw new Error('Can\'t delete unexisting card');
   }
   
   array = [
@@ -15,7 +15,7 @@ export const deleteCard = (array, id) => {
 return array
 }
 
-export const changeCards = (array, card) => {
+export const changeCardInfo = (array, card) => {
   const index = array.findIndex((item) => item.id === card.id);
   array = [
     ...array.slice(0, index),

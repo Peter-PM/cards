@@ -1,7 +1,6 @@
 import {
   addCard,
   delCard,
-  addCardInCard,
   changeCard,
   viewPopup,
   movingCardDown,
@@ -38,22 +37,11 @@ describe('Actions', () => {
     expect(delCard(card)).toEqual(returnedObj);
   });
 
-  it('Проверка объекта, возвращаемого addCardInCard', () => {
-
-    const id = 2;
-    const returnedObj = {
-      type: ActionType.ADD_CARD_IN_CARD,
-      payload: id,
-    };
-
-    expect(addCardInCard(id)).toEqual(returnedObj);
-  });
-
   it('Проверка объекта, возвращаемого changeCard', () => {
 
     const card = {
       title: "Заголовок 1",
-      id: 1,
+      id: '',
       text: "text",
       width: 3,
       parentCard: 0,
@@ -81,7 +69,7 @@ describe('Actions', () => {
 
     const card = {
       title: "Заголовок 1",
-      id: 1,
+      id: '',
       text: "text",
       width: 3,
       parentCard: 0,
@@ -98,7 +86,7 @@ describe('Actions', () => {
 
     const card = {
       title: "Заголовок 1",
-      id: 1,
+      id: '',
       text: "text",
       width: 3,
       parentCard: 0,
@@ -115,7 +103,7 @@ describe('Actions', () => {
 
     const card = {
       title: "Заголовок 1",
-      id: 1,
+      id: '',
       text: "text",
       width: 3,
       parentCard: 0,

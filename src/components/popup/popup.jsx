@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { viewPopup, delCard, addCardInCard, changeCard } from "../../store/action";
+import { viewPopup, delCard, addCard, changeCard } from "../../store/action";
 import styles from "./popup.module.scss";
-import { clickEsc, clickEnter } from "../../utils/utils";
+import { clickEsc, clickEnter, newCard } from "../../utils/utils";
 import { getPopupCard, getPopupView } from "../../store/selectors";
 const FocusTrap = require("focus-trap-react");
 
@@ -51,7 +51,7 @@ function Popup() {
   };
 
   const handleAddCanges = () => {
-    dispatch(addCardInCard(activeCard.id));
+    dispatch(addCard(newCard(activeCard.id)));
     handleClosePopup();
   };
 

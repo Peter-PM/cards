@@ -13,7 +13,7 @@ const popup = createReducer(initialState, (builder) => {
       state.popupView = action.payload
     })
     .addCase(addPopupCard, (state, action) => {
-      state.popupCard = action.payload
+      state.popupCard = action.payload ? action.payload : state.popupCard
     });
 });
 

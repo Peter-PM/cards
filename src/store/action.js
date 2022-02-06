@@ -11,13 +11,11 @@ export const ActionType = {
   MOVING_CARD_DOWN: 'moving-card-down',
 };
 
-export const addCard = createAction(ActionType.ADD_CARD);
-
-export const delCard = createAction(ActionType.DELETE_CARD, (card)=> ({
+export const addCard = createAction(ActionType.ADD_CARD, (card)=> ({
   payload: card,
 }));
 
-export const addCardInCard = createAction(ActionType.ADD_CARD_IN_CARD, (id)=> ({
+export const delCard = createAction(ActionType.DELETE_CARD, (id)=> ({
   payload: id,
 }));
 
@@ -26,7 +24,7 @@ export const changeCard = createAction(ActionType.CHANGE_CARD, (card)=> ({
 }));
 
 export const viewPopup = createAction(ActionType.VIEW_POPUP, (bool)=> ({
-  payload: bool,
+  payload: Boolean(bool),
 }));
 
 export const movingCardUp = createAction(ActionType.MOVING_CARD_UP, (card)=> ({

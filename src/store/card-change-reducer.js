@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addCard, delCard, addCardInCard, changeCard, movingCardUp, movingCardDown } from './action';
-import { changeCards, movCardUp, movCardDown, newCard, deleteCard } from '../utils/utils';
+import { addCard, delCard, changeCard, movingCardUp, movingCardDown } from './action';
+import { changeCardInfo, movCardUp, movCardDown, deleteCard } from '../utils/utils';
 import { CARDS } from '../mock';
 
 const initialState = {
@@ -9,23 +9,20 @@ const initialState = {
 
 const chengeCards = createReducer(initialState, (builder) => {
   builder
-    .addCase(addCard, (state) => {
-      state.cards = [...state.cards, newCard()];
+    .addCase(addCard, (state, action) => {
+      state.cards = action.payload ? [...state.cards, action.payload] : state.cards;
     })
     .addCase(delCard, (state, action) => {
-      state.cards = deleteCard(state.cards, action.payload);
-    })
-    .addCase(addCardInCard, (state, action) => {
-      state.cards = [...state.cards, newCard(action.payload)];
+      state.cards = action.payload ? deleteCard(state.cards, action.payload) : state.cards;
     })
     .addCase(changeCard, (state, action) => {
-      state.cards = changeCards(state.cards, action.payload);
+      state.cards = action.payload ? changeCardInfo(state.cards, action.payload) : state.cards;
     })
     .addCase(movingCardUp, (state, action) => {
-      state.cards = movCardUp(state.cards, action.payload);
+      state.cards = action.payload ? movCardUp(state.cards, action.payload) : state.cards;
     })
     .addCase(movingCardDown, (state, action) => {
-      state.cards = movCardDown(state.cards, action.payload);
+      state.cards = action.payload ? movCardDown(state.cards, action.payload) : state.cards;
     });
 });
 
