@@ -22,6 +22,10 @@ function Popup() {
     popupView ? document.addEventListener("keydown", handleEscKeyDown) : document.removeEventListener("keydown", handleEscKeyDown);
   }, [popupView]);
 
+  useEffect(()=> {
+    document.querySelector('body').style.overflow = popupView ? "hidden" : "visible" ;
+  }, [popupView]);
+
   const handleClosePopup = () => {
     document.removeEventListener("keydown", handleEscKeyDown);
     dispatch(viewPopup(false));

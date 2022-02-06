@@ -71,21 +71,13 @@ export const movCardDown = (array, card) => {
 }
 
 export const newCard = (num = 0) => {
-  if (num) {
-    return {
-        title: "Заголовок",
-        id: nanoid(),
-        text: "text",
-        width: 12,
-        parentCard: num,
-    };
-  }
+
   return {
     title: "Заголовок",
     id: nanoid(),
     text: "text",
-    width: 2,
-    parentCard: 0,
+    width: `${num ? 12 : 2}`,
+    parentCard: num,
   };
 }
 
